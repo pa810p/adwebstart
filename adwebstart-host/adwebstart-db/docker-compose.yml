@@ -1,0 +1,26 @@
+version: '3.8'
+
+services:
+  adwebstart-db:
+    image: adwebstart-db:latest
+    container_name: adwebstart-db
+    restart: "no"
+    environment:
+      - POSTGRES_DB=postgres
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+    volumes:
+      - adwebstart:/var/lib/postgresql/data
+    ports:
+      - "2345:5432"
+    networks:
+      - adwebstart
+
+volumes:
+  adwebstart:
+    driver: local
+
+networks:
+  adwebstart:
+    driver: bridge
+
