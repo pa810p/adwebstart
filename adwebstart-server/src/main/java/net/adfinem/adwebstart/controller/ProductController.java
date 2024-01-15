@@ -7,6 +7,7 @@ import org.modelmapper.ModelMapper;
 import org.modelmapper.convention.MatchingStrategies;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -39,10 +40,13 @@ public class ProductController {
     @GetMapping("{productId}")
     public ResponseEntity<ProductDTO> getProduct(@PathVariable final UUID productId) {
         final Product product = this.productService.get(productId);
-
-        return ResponseEntity.ok(
-                modelMapper().map(product, ProductDTO.class)
-        );
+        if (product == null) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
+        } else {
+            return ResponseEntity.ok(
+                    modelMapper().map(product, ProductDTO.class)
+            );
+        }
     }
 
     @GetMapping()
@@ -57,9 +61,11 @@ public class ProductController {
 
     @DeleteMapping("{productId}")
     public ResponseEntity<String> deleteProduct(@PathVariable UUID productId) {
-        this.productService.delete(productId);
-
-        return ResponseEntity.ok("ok");
+        final Product product = this.productService.delete(productId);
+        if (product == null) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
+        }
+        return ResponseEntity.ok("Product deleted: " + productId);
     }
 
     private ProductDTO convertProductToDto(final Product product) {

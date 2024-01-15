@@ -28,9 +28,14 @@ public class ProductService {
         return this.productRepository.findAll();
     }
 
-    public void delete(final UUID productId) {
+    public Product delete(final UUID productId) {
         final Product product = this.productRepository.getByProductId(productId);
-        this.productRepository.delete(product);
+        if (product == null) {
+            return null;
+        } else {
+            this.productRepository.delete(product);
+        }
+        return product;
     }
 
 }
