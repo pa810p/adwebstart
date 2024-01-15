@@ -2,8 +2,10 @@ CREATE USER adwebstart WITH PASSWORD 'adwebstart';
 CREATE DATABASE adwebstart;
 ALTER DATABASE adwebstart OWNER TO adwebstart;
 
+GRANT ALL PRIVILEGES ON DATABASE adwebstart TO adwebstart;
+
 -- Connect to the 'mydatabase' database
-\c adwebstart
+\c -U adwebstart adwebstart
 
 DROP TABLE IF EXISTS product;
 DROP SEQUENCE IF EXISTS product_id_seq;

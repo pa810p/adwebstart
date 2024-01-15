@@ -1,4 +1,5 @@
 adwebstart-host/adwebstart/adwebstart-*.jar
+adwebstart-server/src/main/resources/application.properties
 
 # Compiled class file
 *.class
