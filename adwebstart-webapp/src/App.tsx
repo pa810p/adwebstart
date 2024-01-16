@@ -1,10 +1,11 @@
 import './App.css';
+import { Products } from './components/products';
 
 export const App = () => {
   return (
-    <div>
-      <img src="logo512.png" alt="adwebstart"/>
-    </div>
+      <div>
+          <Products/>
+      </div>
   )  
 }
 
