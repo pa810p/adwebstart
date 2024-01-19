@@ -30,10 +30,8 @@ public class ProductController {
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<ProductDTO> addProduct(@RequestBody final ProductDTO dto) {
         final Product product = modelMapper().map(dto, Product.class);
-        product.setProductId(UUID.randomUUID());
         final Product createdProduct = this.productService.add(product);
         modelMapper().getConfiguration().setMatchingStrategy(MatchingStrategies.STRICT);
-
         return ResponseEntity.ok(modelMapper().map(createdProduct, ProductDTO.class));
     }
 
@@ -55,7 +53,6 @@ public class ProductController {
         final List<ProductDTO> productsDto = products.stream()
                 .map(this::convertProductToDto)
                 .toList();
-
         return ResponseEntity.ok(productsDto);
     }
 

@@ -17,18 +17,23 @@ public class ProductService {
     private final ProductRepository productRepository;
 
     public Product add(final Product product) {
+        log.debug("add product");
+        product.setProductId(UUID.randomUUID());
         return this.productRepository.save(product);
     }
 
     public Product get(final UUID productId) {
+        log.debug("get product");
         return this.productRepository.getByProductId(productId);
     }
 
     public List<Product> findAll() {
+        log.debug("find all products");
         return this.productRepository.findAll();
     }
 
     public Product delete(final UUID productId) {
+        log.debug("delete product by Id:" + productId);
         final Product product = this.productRepository.getByProductId(productId);
         if (product == null) {
             return null;
