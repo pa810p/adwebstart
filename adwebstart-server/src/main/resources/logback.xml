@@ -7,7 +7,7 @@
         </encoder>
     </appender>
     <appender name="LOGFILE" class="ch.qos.logback.core.FileAppender">
-        <file>adwebapp.log</file>
+        <file>adwebstart.log</file>
         <encoder class="ch.qos.logback.core.encoder.LayoutWrappingEncoder">
         <layout class="ch.qos.logback.classic.PatternLayout">
             <pattern>%d{HH:mm:ss} [%thread] [%X{xRequestId}] %-5p - %msg %ex%n</pattern>
