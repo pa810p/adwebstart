@@ -4,8 +4,7 @@ ALTER DATABASE adwebstart OWNER TO adwebstart;
 
 GRANT ALL PRIVILEGES ON DATABASE adwebstart TO adwebstart;
 
--- Connect to the 'mydatabase' database
-\c -U adwebstart adwebstart
+\c adwebstart
 
 DROP TABLE IF EXISTS product;
 DROP SEQUENCE IF EXISTS product_id_seq;
@@ -19,5 +18,7 @@ CREATE TABLE IF NOT EXISTS product (
   price NUMERIC(15,2)
 );
 
+ALTER TABLE product OWNER TO adwebstart;
+ALTER SEQUENCE product_id_seq OWNER TO adwebstart;
 
 

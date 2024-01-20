@@ -1,16 +1,14 @@
-FROM node:20 AS build
+FROM node:20-alpine
 WORKDIR /app
 COPY package*.json ./
 RUN npm install
+RUN npm install react-scripts@latest
+RUN npm install @mui/material @emotion/react @emotion/styled
+RUN npm install axios
+# RUN npm install -g serve
 COPY . .
 RUN npm run build
-RUN npm install axios @mui/material @emotion/react @emotion/styled
-
-# Stage 2: Create a lightweight Node.js server
-FROM node:20-alpine
-WORKDIR /app
-COPY --from=build /app/build /app
-COPY package*.json ./
-RUN npm install -g serve
 EXPOSE 3000
-CMD ["serve", "-p", "3000", "-s", "."]
+#CMD ["serve", "-p", "3000", "-s", "."]
+CMD ["npm", "start"]
+

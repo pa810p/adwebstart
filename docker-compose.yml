@@ -19,6 +19,12 @@ services:
   adwebstart:
     image: adwebstart:latest
     container_name: adwebstart
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:postgresql://adwebstart-db:5432/adwebstart
+      SPRING_DATASOURCE_USERNAME: adwebstart
+      SPRING_DATASOURCE_PASSWORD: adwebstart
+    depends_on: 
+      - adwebstart-db
     ports:
       - "9000:9000"
     volumes:
@@ -27,11 +33,13 @@ services:
     networks:
       - adwebstart
 
-  adwebstart-react:
-    image: adwebstart-react:latest
-    container_name: adwebstart-react
+  adwebstart-webapp:
+    image: adwebstart-webapp:latest
+    container_name: adwebstart-webapp
+    depends_on:
+      - adwebstart
     ports:
-      - "3001:3000"
+      - "3000:3000"
     networks:
       - adwebstart
 

@@ -1,12 +1,12 @@
 version: '3.8'
 
 services:
-  adwebstart-react:
-    image: adwebstart-react:latest
-    container_name: adwebstart-react
+  adwebstart-webapp:
+    image: adwebstart-webapp:latest
+    container_name: adwebstart-webapp
     restart: "no"
     ports:
-      - "3001:3000"
+      - "3000:3000"
     networks:
       - adwebstart
 
