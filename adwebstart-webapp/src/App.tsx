@@ -1,3 +1,10 @@
+/**
+ * AdWebStart - snippet that can be used to create web project with:
+ * SpringBoot, Postgresql, React
+ * Author:     Paweł Prokop (pa810p@gmail.com)
+ * Repository: https://github.com/pa810p/bps2
+ * License:    GNU General Public License v3.0  see: LICENSE
+ */
 import { useEffect } from 'react';
 
 import './App.css';

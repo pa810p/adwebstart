@@ -1,5 +1,8 @@
-adwebstart-host/adwebstart/adwebstart-*.jar
 adwebstart-server/src/main/resources/application.properties
+adwebstart-server/target
+.idea
+
+*.iml
 
 # Compiled class file
 *.class
