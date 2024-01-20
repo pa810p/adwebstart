@@ -1,13 +1,12 @@
 import React, { useState, useEffect } from "react";
 
 import Typography from "@mui/material/Typography";
-import Container from "@mui/material/Container";
-import Toolbar from "@mui/material/Toolbar";
 import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
 import Box from '@mui/material/Box';
 import axios from 'axios';
 import { ProductTable, DataRow } from "./ProductTable";
+import { ErrorMessage } from "./AlertMessage";
 
 const PRODUCTS_URL = 'http://localhost:9000/products'
 
@@ -21,9 +20,14 @@ export const Products : React.FC= () => {
 
     const [addButtonEnabled, setAddButtonEnabled] = useState(false);
     const [priceValid, setPriceValid] = useState(false);
+    const [productValid, setProductValid] = useState(false);
     
     const [productData, setProductData] = useState<DataRow[]>([]);
     const [loading, setLoading] = useState(true);
+
+    const [alertOpen, setAlertOpen] = useState(false);
+    const [alertMessage, setAlertMessage] = useState('');
+
 
     useEffect(() => {
         handleRefresh();
@@ -36,8 +40,13 @@ export const Products : React.FC= () => {
             setProductData(response.data);
             setProductName('')
             setProductPrice('')
+            setPriceValid(false);
+            setProductValid(false);
+            setAddButtonEnabled(false);
         } catch (error) {
             console.error('Error fetching data:', error);
+            setAlertMessage('Unable to read product list, try again later');
+            setAlertOpen(true);
         } finally {
             setLoading(false)
         }
@@ -50,7 +59,9 @@ export const Products : React.FC= () => {
             await axios.delete(PRODUCTS_URL + '/' + id);
             handleRefresh();
         } catch (error) {
-          console.error('Error deleting data:', error);
+            console.error('Error deleting data:', error);
+            setAlertMessage('Unable to delete product, try again later');
+            setAlertOpen(true);
         }
     };
 
@@ -64,6 +75,8 @@ export const Products : React.FC= () => {
             await axios.post(PRODUCTS_URL, data);
         } catch (error) {
             console.error('Error adding new project');
+            setAlertMessage('Unable to add product, try again later');
+            setAlertOpen(true);
         } finally {
             setProductName('');
             setProductPrice('');
@@ -82,6 +95,8 @@ export const Products : React.FC= () => {
         console.debug('handleNameChange')
         setProductName(e.target.value);
 
+        setProductValid(e.target.value !== '');
+
         console.debug('name: ' + e.target.value + ' price: ' + productPrice + ' isValid: ' + priceValid);
         setAddButtonEnabled(e.target.value !== '' && priceValid)
     }
@@ -98,8 +113,11 @@ export const Products : React.FC= () => {
         console.debug('name: ' + productName + ' price: ' + productPrice + ' isValid: ' + isValid);
     }
 
+    const handleAlertClose = () => {
+        setAlertOpen(false);
+    }
+
     return (
-        // <Container maxWidth="xl">
         <Box bgcolor="#f0f0f0">
             <Box paddingTop={1} paddingBottom={1}
                 // sx={{ flexGrow: 0, display: { xs: "flex", md: "flex" } }}
@@ -107,23 +125,24 @@ export const Products : React.FC= () => {
                 // flexDirection="row"
                 alignItems="center"
                 justifyContent="left"
-                // height="100vh"  // Adjust as needed
+                height="100%"  // Adjust as needed
                 >
                 <div style={{ padding: '5 px'}}>
-                        <Typography // className="custom-typography"
-                            margin={1}
-                            sx={{flexGrow: 0, fontWeight: 700}}>
-                            Product:
-                        </Typography>
+                    <Typography // className="custom-typography"
+                        margin={1}
+                        sx={{flexGrow: 0, fontWeight: 700}}>
+                        Product:
+                    </Typography>
                 </div>
                 <div style={{ padding: '5 px'}}>
-                        <TextField
-                            onChange={(event) => handleNameChange(event)}
-                            label="Name"
-                            variant="outlined"
-                            value={productName}
-                            sx={{mb: 2}}
-                        />
+                    <TextField
+                        onChange={(event) => handleNameChange(event)}
+                        label="Name"
+                        variant="outlined"
+                        value={productName}
+                        error={!productValid}
+                        sx={{mb: 2}}
+                    />
                 </div>
                 <div style={{ padding: '5 px'}}>
 
@@ -139,8 +158,8 @@ export const Products : React.FC= () => {
                 <div style={{ padding: '5 px'}}>
             
                     <Button className="custom-button"
-                    disableElevation
-                    // style={{ textTransform: 'none' }}
+                        disableElevation
+                        style={{ textTransform: 'none' }}
                         variant="contained"
                         onClick={handleAddButton}
                         disabled={!addButtonEnabled}
@@ -150,8 +169,8 @@ export const Products : React.FC= () => {
                 </div>
                 <div style={{ paddingLeft: '5 px'}}>
                     <Button
-                    // disableElevation
-                    // style={{ textTransform: 'none' }}
+                        disableElevation
+                        style={{ textTransform: 'none' }}
                         variant="contained"
                         onClick={handleRefreshButton}
                     >
@@ -165,8 +184,13 @@ export const Products : React.FC= () => {
                 ) : (
                 <ProductTable data={productData} onDelete={handleDelete}/>
             )}
-            </Box>
-        // </Container>
+            <ErrorMessage
+                open={alertOpen}
+                message={alertMessage}
+                handleClose={handleAlertClose}
+            />
+        </Box>
+        
     )
         
         

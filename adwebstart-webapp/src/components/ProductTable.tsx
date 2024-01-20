@@ -40,7 +40,7 @@ export const ProductTable : React.FC<DataTableProps> = ({ data, onDelete }) => {
                         <TableCell>
                             <Button 
                                 disableElevation
-                                style={{ textTransform: 'none' }}onClick={() => onDelete(row.productId)}>
+                                style={{ textTransform: 'none' }} onClick={() => onDelete(row.productId)}>
                                     Remove
                             </Button>
                         </TableCell>
