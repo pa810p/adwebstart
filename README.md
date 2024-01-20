@@ -17,7 +17,7 @@ React with TypeScript that is provided as an user interface.
 1. Build server
 
 ```shell
-$ cd adwebstart-host/adwebstart-server
+$ cd adwebstart-server
 $ mvn clean install
 $ docker build . -t adwebstart-server
 ```
@@ -40,7 +40,6 @@ $ docker build . -t adwebstart-webapp
 
 ### Compose containers from previously created images
 ```shell
-$ cd adwebstart-host
 $ docker-compose -f docker-compose.yml up -d
 ```
 
@@ -60,4 +59,9 @@ $ docker ps
 http://localhost:3000
 ```
 
+## Screenshots
+
+<p align="center">
+  <img src="https://github.com/pa810p/adwebstart/assets/46489402/70a1a2a4-1e9a-4736-95d3-fcbfeb13458d">
+</p>
 
