@@ -14,4 +14,8 @@
       <module>adwebstart-webapp</module>
     </modules>
 
+    <dependencies>
+
+    </dependencies>
+
 </project>

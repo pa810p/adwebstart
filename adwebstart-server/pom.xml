@@ -18,16 +18,19 @@
         <assertj-version>3.4.0</assertj-version>
         <compiler-version>1.8</compiler-version>
         <jackson-version>2.7.3</jackson-version>
+        <javax-persistence-version>2.2</javax-persistence-version>
         <joda-time-version>2.9.2</joda-time-version>
         <junit-version>4.13</junit-version>
         <log4j-version>1.2.17</log4j-version>
+        <lombok-version>1.18.20</lombok-version>
+        <modelmapper-version>2.3.5</modelmapper-version>
+        <maven-compiler-plugin-version>3.8.1</maven-compiler-plugin-version>
         <mockito-version>1.8.4</mockito-version>
+        <postgresql-version>42.2.28</postgresql-version>
         <slf4j-version>1.7.30</slf4j-version>
         <surefire-version>2.19.1</surefire-version>
         <spring-boot-version>2.5.1</spring-boot-version>
-        <javax-persistence-version>2.2</javax-persistence-version>
-        <lombok-version>1.18.20</lombok-version>
-        <modelmapper-version>2.3.5</modelmapper-version>
+        <spring-boot-maven-version>2.4.3</spring-boot-maven-version>
     </properties>
 
     <dependencies>
@@ -71,7 +74,7 @@
         <dependency>
             <groupId>org.postgresql</groupId>
             <artifactId>postgresql</artifactId>
-            <version>42.2.21</version>
+            <version>${postgresql-version}</version>
         </dependency>
         <!--Binding for commons logging over slf4j -->
         <dependency>
@@ -107,12 +110,12 @@
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
-                <version>2.4.3</version>
+                <version>${spring-boot-maven-version}</version>
             </plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
-                <version>3.8.1</version>
+                <version>${maven-compiler-plugin-version}</version>
                 <executions>
                     <execution>
                         <id>compile</id>
