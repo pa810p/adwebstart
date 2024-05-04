@@ -6,8 +6,8 @@
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
-        <version>2.4.3</version>
-        <relativePath/> <!-- lookup parent from repository -->
+        <version>3.2.3</version>
+        <relativePath/>
     </parent>
 
     <groupId>net.adfinem</groupId>
@@ -17,20 +17,21 @@
     <properties>
         <assertj-version>3.4.0</assertj-version>
         <compiler-version>1.8</compiler-version>
-        <jackson-version>2.7.3</jackson-version>
+        <dependency-check-version>9.0.9</dependency-check-version>
+        <jackson-version>2.16.1</jackson-version>
         <javax-persistence-version>2.2</javax-persistence-version>
         <joda-time-version>2.9.2</joda-time-version>
         <junit-version>4.13</junit-version>
         <log4j-version>2.23.0</log4j-version>
-        <lombok-version>1.18.20</lombok-version>
+        <lombok-version>1.18.30</lombok-version>
         <modelmapper-version>2.3.5</modelmapper-version>
         <maven-compiler-plugin-version>3.8.1</maven-compiler-plugin-version>
         <mockito-version>1.8.4</mockito-version>
         <postgresql-version>42.3.9</postgresql-version>
-        <slf4j-version>1.7.30</slf4j-version>
+        <slf4j-version>2.0.5</slf4j-version>
         <surefire-version>2.19.1</surefire-version>
-        <spring-boot-version>2.5.12</spring-boot-version>
-        <spring-boot-maven-version>2.4.3</spring-boot-maven-version>
+        <spring-boot-version>3.2.5</spring-boot-version>
+        <spring-boot-maven-version>3.2.5</spring-boot-maven-version>
     </properties>
 
     <dependencies>
@@ -135,6 +136,20 @@
                 <configuration>
                     <release>17</release>
                 </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.owasp</groupId>
+                <artifactId>dependency-check-maven</artifactId>
+                <version>${dependency-check-version}</version>
+                <executions>
+                    <execution>
+                        <id>check-dependencies</id>
+                        <phase>verify</phase>
+                        <goals>
+                            <goal>check</goal>
+                        </goals>
+                    </execution>
+                </executions>
             </plugin>
         </plugins>
     </build>
