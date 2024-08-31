@@ -17,9 +17,8 @@
     <properties>
         <assertj-version>3.4.0</assertj-version>
         <compiler-version>1.8</compiler-version>
-        <dependency-check-version>9.0.9</dependency-check-version>
-        <jackson-version>2.16.1</jackson-version>
-        <javax-persistence-version>2.2</javax-persistence-version>
+        <dependency-check-version>10.0.3</dependency-check-version>
+        <jackson-version>2.17.2</jackson-version>
         <joda-time-version>2.9.2</joda-time-version>
         <junit-version>4.13</junit-version>
         <log4j-version>2.23.0</log4j-version>
@@ -30,8 +29,10 @@
         <postgresql-version>42.3.9</postgresql-version>
         <slf4j-version>2.0.5</slf4j-version>
         <surefire-version>2.19.1</surefire-version>
-        <spring-boot-version>3.2.5</spring-boot-version>
-        <spring-boot-maven-version>3.2.5</spring-boot-maven-version>
+        <springdoc-openapi-starter-webmvc-ui-version>2.2.0</springdoc-openapi-starter-webmvc-ui-version>
+        <spring-boot-version>3.3.3</spring-boot-version>
+        <spring-boot-maven-version>3.3.3</spring-boot-maven-version>
+        <webjars-swagger-ui-version>5.17.11</webjars-swagger-ui-version>
     </properties>
 
     <dependencies>
@@ -58,10 +59,11 @@
             <version>${spring-boot-version}</version>
         </dependency>
         <dependency>
-            <groupId>javax.persistence</groupId>
-            <artifactId>javax.persistence-api</artifactId>
-            <version>${javax-persistence-version}</version>
+            <groupId>org.springdoc</groupId>
+            <artifactId>springdoc-openapi-starter-webmvc-ui</artifactId>
+            <version>${springdoc-openapi-starter-webmvc-ui-version}</version>
         </dependency>
+
         <dependency>
             <groupId>org.slf4j</groupId>
             <artifactId>slf4j-api</artifactId>
@@ -137,7 +139,7 @@
                     <release>17</release>
                 </configuration>
             </plugin>
-            <plugin>
+<!--            <plugin>
                 <groupId>org.owasp</groupId>
                 <artifactId>dependency-check-maven</artifactId>
                 <version>${dependency-check-version}</version>
@@ -150,7 +152,15 @@
                         </goals>
                     </execution>
                 </executions>
+                <configuration>
+                    <nvd>
+                        <apiKey>PROVIDE YOUR OWN API KEY</apiKey>
+                        <waitTime>4000</waitTime>
+                        <cveUrlModified>https://services.nvd.nist.gov/rest/json/cves/1.0</cveUrlModified>
+                        <cveUrlBase>https://services.nvd.nist.gov/rest/json/cves/1.0</cveUrlBase>
+                    </nvd>
+                </configuration>
             </plugin>
-        </plugins>
+-->        </plugins>
     </build>
 </project>
