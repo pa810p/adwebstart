@@ -2,14 +2,14 @@
  * AdWebStart - A snippet that can be used to create a web project with
  * SpringBoot, Postgresql, React
  * Author:     Paweł Prokop (pa810p@gmail.com)
- * Repository: https://github.com/pa810p/bps2
+ * Repository: https://github.com/pa810p/adwebstart
  * License:    GNU General Public License v3.0  see: LICENSE
  */
 package net.adfinem.adwebstart.domain.entity;
 
+import jakarta.persistence.*;
 import lombok.*;
 
-import javax.persistence.*;
 import java.math.BigDecimal;
 import java.util.UUID;
 

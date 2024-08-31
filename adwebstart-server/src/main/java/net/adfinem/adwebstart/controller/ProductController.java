@@ -2,7 +2,7 @@
  * AdWebStart - A snippet that can be used to create a web project with
  * SpringBoot, Postgresql, React
  * Author:     Paweł Prokop (pa810p@gmail.com)
- * Repository: https://github.com/pa810p/bps2
+ * Repository: https://github.com/pa810p/adwebstart
  * License:    GNU General Public License v3.0  see: LICENSE
  */
 package net.adfinem.adwebstart.controller;
@@ -23,7 +23,7 @@ import java.util.List;
 import java.util.UUID;
 
 @RestController
-@RequestMapping("products")
+@RequestMapping("/products")
 public class ProductController {
 
     @Autowired
