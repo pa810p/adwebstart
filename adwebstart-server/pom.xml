@@ -16,13 +16,13 @@
 
     <properties>
         <assertj-version>3.4.0</assertj-version>
-        <compiler-version>1.8</compiler-version>
+        <java-version>23</java-version>
         <dependency-check-version>10.0.3</dependency-check-version>
         <jackson-version>2.17.2</jackson-version>
         <joda-time-version>2.9.2</joda-time-version>
         <junit-version>4.13</junit-version>
         <log4j-version>2.23.0</log4j-version>
-        <lombok-version>1.18.30</lombok-version>
+        <lombok-version>1.18.36</lombok-version>
         <modelmapper-version>2.3.5</modelmapper-version>
         <maven-compiler-plugin-version>3.8.1</maven-compiler-plugin-version>
         <mockito-version>1.8.4</mockito-version>
@@ -101,6 +101,7 @@
             <version>${lombok-version}</version>
             <scope>provided</scope>
         </dependency>
+
         <dependency>
             <groupId>org.modelmapper</groupId>
             <artifactId>modelmapper</artifactId>
@@ -136,9 +137,20 @@
                     </execution>
                 </executions>
                 <configuration>
-                    <release>17</release>
+                    <release>${java-version}</release>
+                    <annotationProcessorPaths>
+                        <path>
+                            <groupId>org.projectlombok</groupId>
+                            <artifactId>lombok</artifactId>
+                            <version>${lombok-version}</version>
+                        </path>
+                    </annotationProcessorPaths>
+                    <compilerArgs>
+                        <arg>-parameters</arg>
+                    </compilerArgs>
                 </configuration>
             </plugin>
+
 <!--            <plugin>
                 <groupId>org.owasp</groupId>
                 <artifactId>dependency-check-maven</artifactId>

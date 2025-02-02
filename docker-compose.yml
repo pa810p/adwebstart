@@ -17,8 +17,8 @@ services:
       - adwebstart
 
   adwebstart:
-    image: adwebstart:latest
-    container_name: adwebstart
+    image: adwebstart-server:latest
+    container_name: adwebstart-server
     environment:
       SPRING_DATASOURCE_URL: jdbc:postgresql://adwebstart-db:5432/adwebstart
       SPRING_DATASOURCE_USERNAME: adwebstart
